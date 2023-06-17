@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack } from '@/designSystem/Stack';
-import { Logo } from '@/components/logo';
+import { Logo, MenuIcon }  from '@/components/index'
 
 const Header: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       height={120}
     >
       <Logo/>
-      <div style={{background: "#35a356", padding:"30px"}}>Menu</div>
+      <MenuIcon/>
 
     </Stack>
   );
