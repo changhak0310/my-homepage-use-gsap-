@@ -13,6 +13,7 @@ const animationTime = '0.7s'
 
 export const MenuIcon = () => {
     const [isActive, setIsActive] = useState(false);
+    const [preLoad, setpreLoad] = useState(false);
     
     const animateLine1Active = keyframes`
         0% {
@@ -127,19 +128,29 @@ export const MenuIcon = () => {
     `;
 
     const animateLine1Styles = css`
-        ${isActive ? animateLine1StylesActive : animateLine1StylesRev }
+        ${ preLoad ? 
+            isActive ? animateLine1StylesActive : animateLine1StylesRev
+            : css`animation: none;` 
+        }
     `;
 
     const animateLine2Styles = css`
-        ${isActive ? animateLine2StylesActive : animateLine2StylesRev }
+        ${ preLoad ? 
+            isActive ? animateLine2StylesActive : animateLine2StylesRev
+            : css`animation: none;` 
+        }
     `;
 
     const animateLine3Styles = css`
-        ${isActive ? animateLine3StylesActive : animateLine3StylesRev }
+        ${ preLoad ? 
+            isActive ? animateLine3StylesActive : animateLine3StylesRev
+            : css`animation: none;` 
+        }
     `;
 
     const handleClick = () => {
         setIsActive((isActive) => !isActive);
+        setpreLoad(true);
     };
 
   return (
