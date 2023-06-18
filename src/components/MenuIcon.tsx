@@ -2,17 +2,18 @@
 
 import { useState } from 'react';
 import { css, keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 
-const menuIconLineHeight = 3;
-const menuIconLineSpace = 10;
+const menuIconLineHeight = 2;
+const menuIconLineSpace = 8;
 const menuIconLineOffsetY = menuIconLineHeight + menuIconLineSpace;
 const menuIconHeight = 3 * menuIconLineHeight + 2 * menuIconLineSpace;
 const cubicBerzierIn = 'cubic-bezier(0.3, 1, 0.7, 1)';
-const cubicBerzerOut = 'cubic-bezier(1, 0.7, 1, 0.3)';
+const animationTime = '0.7s'
 
 export const MenuIcon = () => {
     const [isActive, setIsActive] = useState(false);
-
+    
     const animateLine1Active = keyframes`
         0% {
             transform: translate3d(0, 0, 0) rotate(0deg);
@@ -83,8 +84,8 @@ export const MenuIcon = () => {
         }
     `;
 
-    const menuIconStyles = css`
-        width: 40px;
+    const MenuIconStyles = styled.div`
+        width: 30px;
         height: ${menuIconHeight+"px"};
         cursor: pointer;
         display: flex;
@@ -92,52 +93,60 @@ export const MenuIcon = () => {
         justify-content: space-between;
     `;
 
-    const lineStyles = css`
+    const LineStyles = styled.div`
         width: 100%;
         height: ${menuIconLineHeight+"px"};
         background-color: #fff;
         border-radius: 3px;
         transition: background-color 0.2s ease-in-out;
-
-        &:hover{
-            background-color: #333333;
-        }
     `;
 
     const animateLine1StylesActive = css`
-        animation: ${animateLine1Active} .7s ${cubicBerzierIn} forwards;
+        animation: ${animateLine1Active} ${animationTime} ${cubicBerzierIn} forwards;
     `;
 
     const animateLine2StylesActive = css`
-        animation: ${animateLine2Active} .7s ${cubicBerzierIn} forwards;
+        animation: ${animateLine2Active} ${animationTime} ${cubicBerzierIn} forwards;
     `;
 
     const animateLine3StylesActive = css`
-        animation: ${animateLine3Active} .7s ${cubicBerzierIn} forwards;
+        animation: ${animateLine3Active} ${animationTime} ${cubicBerzierIn} forwards;
     `;
 
     const animateLine1StylesRev = css`
-        animation: ${animateLine1Rev} 0.7s ease-in-out;
+        animation: ${animateLine1Rev} ${animationTime} ease-in-out;
     `;
 
     const animateLine2StylesRev = css`
         margin: ${menuIconLineSpace+"px"} 0px;
-        animation: ${animateLine2Rev} 0.7s ease-in-out;
+        animation: ${animateLine2Rev} ${animationTime} ease-in-out;
     `;
 
     const animateLine3StylesRev = css`
-        animation: ${animateLine3Rev} 0.7s  ease-in-out;
+        animation: ${animateLine3Rev} ${animationTime}  ease-in-out;
+    `;
+
+    const animateLine1Styles = css`
+        ${isActive ? animateLine1StylesActive : animateLine1StylesRev }
+    `;
+
+    const animateLine2Styles = css`
+        ${isActive ? animateLine2StylesActive : animateLine2StylesRev }
+    `;
+
+    const animateLine3Styles = css`
+        ${isActive ? animateLine3StylesActive : animateLine3StylesRev }
     `;
 
     const handleClick = () => {
-        setIsActive(!isActive);
+        setIsActive((isActive) => !isActive);
     };
 
   return (
-    <div css={menuIconStyles} onClick={handleClick}>
-      <div css={[lineStyles, isActive && animateLine1StylesActive, !isActive && animateLine1StylesRev]} />
-      <div css={[lineStyles, isActive && animateLine2StylesActive, !isActive && animateLine2StylesRev]} />
-      <div css={[lineStyles, isActive && animateLine3StylesActive, !isActive && animateLine3StylesRev]} />
-    </div>
+    <MenuIconStyles onClick={handleClick}>
+      <LineStyles css={animateLine1Styles}/>
+      <LineStyles css={animateLine2Styles}/>
+      <LineStyles css={animateLine3Styles}/>
+    </MenuIconStyles>
   );
 };
