@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
+interface MenuIconProps {
+    color?: string;
+    style?: React.CSSProperties;
+}
+
 const menuIconLineHeight = 2;
 const menuIconLineSpace = 8;
 const menuIconLineOffsetY = menuIconLineHeight + menuIconLineSpace;
@@ -11,7 +16,7 @@ const menuIconHeight = 3 * menuIconLineHeight + 2 * menuIconLineSpace;
 const cubicBerzierIn = 'cubic-bezier(0.3, 1, 0.7, 1)';
 const animationTime = '0.7s'
 
-export const MenuIcon = () => {
+export const MenuIcon = ({color, style}: MenuIconProps) => {
     const [isActive, setIsActive] = useState(false);
     const [preLoad, setpreLoad] = useState(false);
     
@@ -85,19 +90,20 @@ export const MenuIcon = () => {
         }
     `;
 
-    const MenuIconStyles = styled.div`
+    const MenuIconStyles = styled.div<MenuIconProps>`
         width: 30px;
         height: ${menuIconHeight+"px"};
         cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        style;
     `;
 
     const LineStyles = styled.div`
         width: 100%;
         height: ${menuIconLineHeight+"px"};
-        background-color: #fff;
+        background-color: ${color || "#fff"};
         border-radius: 3px;
         transition: background-color 0.2s ease-in-out;
     `;
@@ -149,12 +155,12 @@ export const MenuIcon = () => {
     `;
 
     const handleClick = () => {
-        setIsActive((isActive) => !isActive);
         setpreLoad(true);
+        setIsActive((isActive) => !isActive);
     };
 
   return (
-    <MenuIconStyles onClick={handleClick}>
+    <MenuIconStyles onClick={handleClick} style={style}>
       <LineStyles css={animateLine1Styles}/>
       <LineStyles css={animateLine2Styles}/>
       <LineStyles css={animateLine3Styles}/>

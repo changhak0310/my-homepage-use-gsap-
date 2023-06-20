@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
-import Header from '@/modules/header';
+import { Header } from '@/modules';
 
 interface LayoutProps {
   children: ReactNode;
