@@ -40,7 +40,7 @@ const CursorMedia = styled.div`
 
 export const Cursor: React.FC = () => {
   return (
-    <CursorStyle>
+    <CursorStyle className='cursor'>
         <CursorMedia/>
     </CursorStyle>
   );

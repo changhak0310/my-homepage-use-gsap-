@@ -2,7 +2,7 @@ import React from 'react';
 import { Stack } from '@/designSystem/Stack';
 import { Logo, MenuIcon }  from '@/components/index'
 import styled from '@emotion/styled';
-import { Body4 } from '@/components/FontStyle/Body4';
+import { Body4 } from '@/designSystem/FontStyle/Body4';
 
 const HeaderStlye = styled.div`
   position: absolute;

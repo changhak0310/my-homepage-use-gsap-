@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Main, Cursor } from '@/modules';
+import CursorClass from '@/ts/cursor'
 
 const Container = styled.div`
   @media (min-width: 360px) {
@@ -27,6 +28,13 @@ const Container = styled.div`
 `
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    const cursorElement = document.querySelector(".cursor");
+    if (cursorElement instanceof HTMLElement) {
+        const cursor = new CursorClass(cursorElement);
+    }
+  }, [])
+
   return (
     <Container>
       <Main/>

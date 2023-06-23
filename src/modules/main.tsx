@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Stack } from '@/designSystem';
-import { Heading2 } from '@/components/FontStyle';
-import { Body3 } from '@/components/FontStyle';
+import { Heading2 } from '@/designSystem/FontStyle';
+import { Body3 } from '@/designSystem/FontStyle';
 
 const MainStyle = styled.div`
     height: 100vh;
@@ -34,19 +34,21 @@ const MouseOn = styled.a`
 
 export const Main: React.FC = () => {
   return (
-    <MainStyle>
-        <Body3 style={{zIndex: 11, position: 'relative'}}>We make it happen</Body3>
-        <Stack
-            gap={30}
-            style={{
-                zIndex: 11,
-                position: "relative",
-                display: "flex"}}
-        > 
-            <MouseOn><Heading2>Websites</Heading2></MouseOn>
-            <MouseOn><Heading2>Applications</Heading2></MouseOn>
-            <MouseOn><Heading2>Branding</Heading2></MouseOn>
-        </Stack>
+    <MainStyle className='inner'>
+        <CenterContainer>
+            <Body3 style={{zIndex: 11, position: 'relative'}}>We make it happen</Body3>
+            <Stack
+                gap={30}
+                style={{
+                    zIndex: 11,
+                    position: "relative",
+                    display: "flex"}}
+            > 
+                <MouseOn className='mouse'><Heading2>Websites</Heading2></MouseOn>
+                <MouseOn className='mouse'><Heading2>Applications</Heading2></MouseOn>
+                <MouseOn className='mouse'><Heading2>Branding</Heading2></MouseOn>
+            </Stack>
+        </CenterContainer>
     </MainStyle>
   );
 };
