@@ -16,7 +16,6 @@ export const Header: React.FC = () => {
     <HeaderStlye>
       <Stack
         distribute="space-between"
-        style={{background: "#c3b5b5"}}
       >
         <Logo/>
         <Stack 

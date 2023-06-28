@@ -97,7 +97,6 @@ export const MenuIcon = ({color, style}: MenuIconProps) => {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        style;
     `;
 
     const LineStyles = styled.div`

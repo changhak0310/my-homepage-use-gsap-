@@ -14,11 +14,15 @@ const getMousePos = (e: MouseEvent) => {
 const getSiblings = (e: HTMLElement): HTMLElement[] => {
     let siblings: HTMLElement[] = [];
 
-    if(!e.parentNode) {
-        return siblings;
+    if (!e || !(e instanceof HTMLElement)) {
+        return siblings; 
     }
 
-    let sibling = e.parentNode.firstChild;
+    if (e.parentNode === null) {
+        return siblings; 
+    }
+
+    let sibling = e.parentNode?.firstChild;
 
     while(sibling) {
         if(sibling.nodeType === 1 && sibling !== e) {
